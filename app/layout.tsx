@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
+import { QueryProvider } from "@/providers/query-provider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="pt-BR">
-        <body className={montserrat.className}>{children}</body>
+        <body className={montserrat.className}>
+          <QueryProvider>{children}</QueryProvider>
+        </body>
       </html>
     </ClerkProvider>
   );
