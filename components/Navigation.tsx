@@ -11,23 +11,23 @@ import { Menu } from "lucide-react";
 const routes = [
   {
     href: "/",
-    label: "Overview",
+    label: "Visão geral",
   },
   {
     href: "/transactions",
-    label: "Transactions",
+    label: "Transações",
   },
   {
     href: "/accounts",
-    label: "Accounts",
+    label: "Contas",
   },
   {
     href: "/categories",
-    label: "Categories",
+    label: "Categorias",
   },
   {
     href: "/settings",
-    label: "Settings",
+    label: "Configurações",
   },
 ];
 
