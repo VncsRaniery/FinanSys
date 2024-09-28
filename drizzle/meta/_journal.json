@@ -15,6 +15,13 @@
       "when": 1727384181879,
       "tag": "0001_striped_diamondback",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1727541303462,
+      "tag": "0002_living_silver_surfer",
+      "breakpoints": true
     }
   ]
 }
