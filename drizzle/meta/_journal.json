@@ -22,6 +22,13 @@
       "when": 1727541303462,
       "tag": "0002_living_silver_surfer",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1727568672077,
+      "tag": "0003_noisy_leader",
+      "breakpoints": true
     }
   ]
 }
