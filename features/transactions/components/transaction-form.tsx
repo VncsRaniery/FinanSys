@@ -119,7 +119,7 @@ export const TransactionForm = ({
           )}
         />
         <FormField
-          name="accountId"
+          name="categoryId"
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -144,10 +144,11 @@ export const TransactionForm = ({
             <FormItem>
               <FormLabel>Beneficiário</FormLabel>
               <FormControl>
-                <Input 
-                disabled={disabled}
-                placeholder="Adicionar um beneficiário"
-                {...field} />
+                <Input
+                  disabled={disabled}
+                  placeholder="Adicionar um beneficiário"
+                  {...field}
+                />
               </FormControl>
             </FormItem>
           )}
@@ -160,26 +161,26 @@ export const TransactionForm = ({
               <FormLabel>Montante</FormLabel>
               <FormControl>
                 <AmountInput
-                {...field}
-                disabled={disabled}
-                placeholder="0.00"
+                  {...field}
+                  disabled={disabled}
+                  placeholder="0.00"
                 />
               </FormControl>
             </FormItem>
           )}
         />
         <FormField
-          name="payee"
+          name="notes"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Notas</FormLabel>
               <FormControl>
-                <Textarea 
-                {...field}
-                value={field.value ?? ""}
-                disabled={disabled}
-                placeholder="Adicione uma nota (opcional)"
+                <Textarea
+                  {...field}
+                  value={field.value ?? ""}
+                  disabled={disabled}
+                  placeholder="Adicione uma nota (opcional)"
                 />
               </FormControl>
             </FormItem>
