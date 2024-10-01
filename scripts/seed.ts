@@ -11,10 +11,15 @@ const db = drizzle(sql);
 
 const SEED_USER_ID = "user_2maPtdqx1kVCAcCpisY9HPijfg3";
 const SEED_CATEGORIES = [
-  { id: "categoria_1", name: "Comida", userId: SEED_USER_ID, playdId: null, },
-  { id: "categoria_2", name: "Aluguel", userId: SEED_USER_ID, playdId: null, },
-  { id: "categoria_3", name: "Utilitários", userId: SEED_USER_ID, playdId: null, },
-  { id: "categoria_7", name: "Roupas", userId: SEED_USER_ID, playdId: null, },
+  { id: "categoria_1", name: "Comida", userId: SEED_USER_ID, playdId: null },
+  { id: "categoria_2", name: "Aluguel", userId: SEED_USER_ID, playdId: null },
+  {
+    id: "categoria_3",
+    name: "Utilitários",
+    userId: SEED_USER_ID,
+    playdId: null,
+  },
+  { id: "categoria_7", name: "Roupas", userId: SEED_USER_ID, playdId: null },
 ];
 
 const SEED_ACCOUNTS = [
@@ -25,7 +30,7 @@ const SEED_ACCOUNTS = [
 const defaultTo = new Date();
 const defaultFrom = subDays(defaultTo, 90);
 
-const SEED_TRANSACTIONS: typeof transactions.$inferSelect[] = [];
+const SEED_TRANSACTIONS: (typeof transactions.$inferSelect)[] = [];
 
 import { eachDayOfInterval, format } from "date-fns";
 import { convertAmountToMiliunits } from "@/lib/utils";
@@ -55,7 +60,8 @@ const generateTransactionsForDay = (day: Date) => {
   const numTransactions = Math.floor(Math.random() * 4) + 1;
   // 1 a 4 transações por dia
   for (let i = 0; i < numTransactions; i++) {
-    const category = SEED_CATEGORIES[Math.floor(Math.random() * SEED_CATEGORIES.length)];
+    const category =
+      SEED_CATEGORIES[Math.floor(Math.random() * SEED_CATEGORIES.length)];
     const isExpense = Math.random() > 0.6;
     // 60% de chance de ser uma despesa
     const amount = generateRandomAmount(category);
@@ -81,7 +87,7 @@ const generateTransactions = () => {
     start: defaultFrom,
     end: defaultTo,
   });
-  days.forEach(day => generateTransactionsForDay(day));
+  days.forEach((day) => generateTransactionsForDay(day));
 };
 
 generateTransactions();

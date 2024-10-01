@@ -8,8 +8,7 @@ import { and, sql, sum, eq, gte, lte, lt, desc } from "drizzle-orm";
 import { Hono } from "hono";
 import { z } from "zod";
 
-const app = new Hono()
-.get(
+const app = new Hono().get(
   "/",
   clerkMiddleware(),
   zValidator(
@@ -31,7 +30,9 @@ const app = new Hono()
     const defaultTo = new Date();
     const defaultFrom = subDays(defaultTo, 30);
 
-    const startDate = from ? parse(from, "yyyy-MM-dd", new Date()) : defaultFrom;
+    const startDate = from
+      ? parse(from, "yyyy-MM-dd", new Date())
+      : defaultFrom;
     const endDate = to ? parse(to, "yyyy-MM-dd", new Date()) : defaultTo;
 
     const periodLength = differenceInDays(endDate, startDate) + 1;
@@ -41,7 +42,7 @@ const app = new Hono()
     async function fetchFinancialData(
       userId: string,
       startDate: Date,
-      endDate: Date,
+      endDate: Date
     ) {
       return await db
         .select({
@@ -76,7 +77,7 @@ const app = new Hono()
     const [lastPeriod] = await fetchFinancialData(
       auth.userId,
       lastPeriodStart,
-      lastPeriodEnd,
+      lastPeriodEnd
     );
 
     const incomeChange = calculcatePercentageChange(
@@ -115,7 +116,9 @@ const app = new Hono()
     const topCategories = category.slice(0, 3);
     const otherCategories = category.slice(3);
     const otherSum = otherCategories.reduce(
-      (sum, current) => sum + current.value, 0);
+      (sum, current) => sum + current.value,
+      0
+    );
 
     const finalCategories = topCategories;
     if (otherCategories.length > 0) {
@@ -133,7 +136,7 @@ const app = new Hono()
             Number
           ),
         expenses:
-          sql`SUM(CASE WHEN ${transactions.amount} < 0 THEN ${transactions.amount} ELSE 0 END)`.mapWith(
+          sql`SUM(CASE WHEN ${transactions.amount} < 0 THEN ABS(${transactions.amount}) ELSE 0 END)`.mapWith(
             Number
           ),
       })

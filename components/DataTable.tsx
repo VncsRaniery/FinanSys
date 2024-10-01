@@ -42,11 +42,10 @@ export function DataTable<TData, TValue>({
   onDelete,
   disabled,
 }: DataTableProps<TData, TValue>) {
-
-const [ConfirmDialog, confirm] = useConfirm(
+  const [ConfirmDialog, confirm] = useConfirm(
     "Deletar conta",
     "Tem certeza de que deseja deletar a conta?"
-    );
+  );
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -73,7 +72,7 @@ const [ConfirmDialog, confirm] = useConfirm(
 
   return (
     <div>
-        <ConfirmDialog /> 
+      <ConfirmDialog />
       <div className="flex items-center py-4">
         <Input
           placeholder={`Filtrar ${filterKey}...`}
@@ -90,12 +89,12 @@ const [ConfirmDialog, confirm] = useConfirm(
             variant="outline"
             className="ml-auto font-normal text-xs"
             onClick={async () => {
-                const ok = await confirm();
+              const ok = await confirm();
 
-                if (ok) {
-                onDelete(table.getFilteredSelectedRowModel().rows)
+              if (ok) {
+                onDelete(table.getFilteredSelectedRowModel().rows);
                 table.resetRowSelection();
-                }
+              }
             }}
           >
             <Trash className="size-4 mr-2" />
