@@ -49,7 +49,7 @@ const CategoriesPage = () => {
             </CardHeader>
             <CardContent>
                 <DataTable 
-                filterKey="name"
+                filterKey="nome"
                 columns={columns} 
                 data={categories}
                 onDelete={(row) => {
