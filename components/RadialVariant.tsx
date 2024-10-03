@@ -7,7 +7,23 @@ import {
 
 import { formatCurrency } from "@/lib/utils";
 
-const COLORS = ["#0062FF", "#12C6FF", "#FF647F", "#FF9354"];
+const COLORS = [
+  "#0062FF", // Azul Profundo
+  "#12C6FF", // Azul Céu Claro
+  "#FF647F", // Rosa Queimado
+  "#FF9354", // Laranja Suave
+  "#0052CC", // Azul Marinho
+  "#0ABAB5", // Verde Água
+  "#FF3B6A", // Rosa Vibrante
+  "#FFB74D", // Laranja Dourado
+  "#004BA0", // Azul Escuro
+  "#009688", // Verde Esmeralda
+  "#FF6F61", // Coral
+  "#FFA726", // Laranja Brilhante
+  "#005A8C", // Azul Steel
+  "#FF9E80", // Pêssego
+  "#FFB300", // Amarelo Brilhante
+];
 
 type Props = {
   data: {
