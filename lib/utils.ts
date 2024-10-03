@@ -1,5 +1,7 @@
-import { clsx, type ClassValue } from "clsx";
 import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
+import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -75,19 +77,21 @@ export function formatDateRange(period?: Period) {
   const defaultFrom = subDays(defaultTo, 30);
 
   if (!period?.from) {
-    return `${format(defaultFrom, "LLL dd")} - ${format(
+    return `${format(defaultFrom, "LLL dd", { locale: ptBR })} - ${format(
       defaultTo,
-      "LLL dd, y"
+      "LLL dd, y",
+      { locale: ptBR }
     )}`;
   }
   if (period.to) {
-    return `${format(period.from, "LLL dd")} - ${format(
+    return `${format(period.from, "LLL dd", { locale: ptBR })} - ${format(
       period.to,
-      "LLL dd, y"
+      "LLL dd, y",
+      { locale: ptBR }
     )}`;
   }
 
-  return format(period.from, "LLL dd, y");
+  return format(period.from, "LLL dd, y", { locale: ptBR });
 }
 
 export function formatPercentage(

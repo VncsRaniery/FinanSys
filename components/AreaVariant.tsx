@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 import {
   Tooltip,
   XAxis,
@@ -36,7 +38,7 @@ export const AreaVariant = ({ data }: Props) => {
           axisLine={false}
           tickLine={false}
           dataKey="date"
-          tickFormatter={(value) => format(value, "dd MMM")}
+          tickFormatter={(value) => format(value, "dd MMM", { locale: ptBR })}
           style={{ fontSize: "12px" }}
           tickMargin={16}
         />

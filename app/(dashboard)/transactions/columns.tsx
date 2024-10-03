@@ -1,6 +1,10 @@
 "use client";
 
 import { InferResponseType } from "hono";
+
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
+
 import { ArrowUpDown } from "lucide-react";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -8,7 +12,6 @@ import { client } from "@/lib/hono";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Actions } from "./actions";
-import { format } from "date-fns";
 import { formatCurrency } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { AccountColumn } from "./account-column";
@@ -58,7 +61,7 @@ export const columns: ColumnDef<ResponseType>[] = [
     cell: ({ row }) => {
       const date = row.getValue("date") as Date;
 
-      return <span>{format(date, "dd MMMM, yyyy")}</span>;
+      return <span>{format(date, "dd MMMM, yyyy", { locale: ptBR })}</span>;
     },
   },
   {

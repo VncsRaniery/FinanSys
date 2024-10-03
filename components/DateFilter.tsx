@@ -4,7 +4,9 @@ import { useState } from "react";
 import { format, subDays } from "date-fns";
 import { DateRange } from "react-day-picker";
 import { ChevronDown } from "lucide-react";
+
 import qs from "query-string";
+import { ptBR } from "date-fns/locale";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useGetSummary } from "@/features/summary/api/use-get-summary";
@@ -78,6 +80,7 @@ export const DateFilter = () => {
                 selected={date}
                 onSelect={setDate}
                 numberOfMonths={2}
+                locale={ptBR}
                  />
                  <div className="p-4 w-full flex items-center gap-x-2">
                     <PopoverClose asChild>
