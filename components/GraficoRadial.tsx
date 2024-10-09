@@ -53,7 +53,7 @@ export function RadialVariant(props: Props) {
       <CardContent className="flex-1 pb-0">
         <ChartContainer
           config={chartConfig}
-          className="mx-auto aspect-square max-h-[350px] h-[350px]"
+          className="w-full aspect-square max-h-[350px] h-[350px]"
         >
           <RadialBarChart
             data={data.map((item, index) => ({
@@ -85,7 +85,7 @@ export function RadialVariant(props: Props) {
           Tendência de alta de 5,2% este mês <TrendingUp className="h-4 w-4" />
         </div>
         <div className="leading-none text-muted-foreground">
-          Mostrando o total de visitantes dos últimos 6 meses
+          Mostrando o total de despesas por cada categoria.
         </div>
       </CardFooter>
     </Card>

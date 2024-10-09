@@ -8,9 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { PieVariant } from "./PieVariant";
-import { RadarVariant } from "./RadarVariant";
-import { RadialVariant } from "./RadialVariant";
+import { PieVariant } from "./GraficoPizza";
+import { RadarVariant } from "./GraficoRadar";
+import { RadialVariant } from "./GraficoRadial";
 import { Skeleton } from "./ui/skeleton";
 
 type Props = {
