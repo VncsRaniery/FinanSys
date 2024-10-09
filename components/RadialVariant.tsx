@@ -1,28 +1,38 @@
+"use client";
+
+import { TrendingUp } from "lucide-react";
+import { LabelList, RadialBar, RadialBarChart } from "recharts";
+
 import {
-  RadialBar,
-  RadialBarChart,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+} from "@/components/ui/chart";
+import { CategoryTooltip } from "./TooltipCharts";
 
-import { formatCurrency } from "@/lib/utils";
+const chartConfig = {} satisfies ChartConfig;
 
-const COLORS = [
-  "#0062FF", // Azul Profundo
-  "#12C6FF", // Azul Céu Claro
-  "#FF647F", // Rosa Queimado
-  "#FF9354", // Laranja Suave
-  "#0052CC", // Azul Marinho
-  "#0ABAB5", // Verde Água
-  "#FF3B6A", // Rosa Vibrante
-  "#FFB74D", // Laranja Dourado
-  "#004BA0", // Azul Escuro
-  "#009688", // Verde Esmeralda
-  "#FF6F61", // Coral
-  "#FFA726", // Laranja Brilhante
-  "#005A8C", // Azul Steel
-  "#FF9E80", // Pêssego
-  "#FFB300", // Amarelo Brilhante
+const CORES = [
+  "hsl(var(--chart-1))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+  "hsl(var(--chart-6))",
+  "hsl(var(--chart-7))",
+  "hsl(var(--chart-8))",
+  "hsl(var(--chart-9))",
+  "hsl(var(--chart-10))",
+  "hsl(var(--chart-11))",
+  "hsl(var(--chart-12))",
 ];
 
 type Props = {
@@ -32,61 +42,52 @@ type Props = {
   }[];
 };
 
-export const RadialVariant = ({ data }: Props) => {
+export function RadialVariant(props: Props) {
+  const { data } = props;
   return (
-    <ResponsiveContainer width="100%" height={350}>
-      <RadialBarChart
-        cx="50%"
-        cy="30%"
-        barSize={10}
-        innerRadius="90%"
-        outerRadius="40%"
-        data={data.map((item, index) => ({
-          ...item,
-          fill: COLORS[index % COLORS.length],
-        }))}
-      >
-        <RadialBar
-          label={{
-            position: "insideStart",
-            fill: "#fff",
-            fontSize: "12px",
-          }}
-          background
-          dataKey="value"
-        />
-        <Legend
-          layout="horizontal"
-          verticalAlign="bottom"
-          align="right"
-          iconType="circle"
-          content={({ payload }: any) => {
-            return (
-              <ul className="flex flex-col space-y-2">
-                {payload.map((entry: any, index: number) => (
-                  <li
-                    key={`item-${index}`}
-                    className="flex items-center space-x-2"
-                  >
-                    <span
-                      className="size-2 rounded-full"
-                      style={{ backgroundColor: entry.color }}
-                    />
-                    <div className="space-x-1">
-                      <span className="text-sm text-muted-foreground">
-                        {entry.value}
-                      </span>
-                      <span className="text-sm">
-                        {formatCurrency(entry.payload.value)}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            );
-          }}
-        />
-      </RadialBarChart>
-    </ResponsiveContainer>
+    <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Gráfico Radial</CardTitle>
+        <CardDescription>Data</CardDescription>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[350px] h-[350px]"
+        >
+          <RadialBarChart
+            data={data.map((item, index) => ({
+              ...item,
+              fill: CORES[index % CORES.length],
+            }))}
+            startAngle={-90}
+            endAngle={380}
+            innerRadius={30}
+            outerRadius={110}
+          >
+            <ChartTooltip
+              cursor={false}
+              content={<CategoryTooltip hideLabel />}
+            />
+            <RadialBar dataKey="value" background>
+              <LabelList
+                position="insideStart"
+                dataKey="name"
+                className="fill-white capitalize mix-blend-luminosity"
+                fontSize={11}
+              />
+            </RadialBar>
+          </RadialBarChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2 font-medium leading-none">
+          Tendência de alta de 5,2% este mês <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Mostrando o total de visitantes dos últimos 6 meses
+        </div>
+      </CardFooter>
+    </Card>
   );
-};
+}

@@ -1,11 +1,24 @@
+"use client";
+
+import { TrendingUp } from "lucide-react";
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+
 import {
-  PolarAngleAxis,
-  PolarGrid,
-  PolarRadiusAxis,
-  Radar,
-  RadarChart,
-  ResponsiveContainer,
-} from "recharts";
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+} from "@/components/ui/chart";
+import { CategoryTooltip } from "./TooltipCharts";
+
+const chartConfig = {} satisfies ChartConfig;
 
 type Props = {
   data: {
@@ -14,20 +27,39 @@ type Props = {
   }[];
 };
 
-export const RadarVariant = ({ data }: Props) => {
+export function RadarVariant(props: Props) {
+  const { data } = props;
   return (
-    <ResponsiveContainer width="100%" height={350}>
-      <RadarChart cx="50%" cy="50%" outerRadius="60%" data={data}>
-        <PolarGrid />
-        <PolarAngleAxis style={{ fontSize: "12px " }} dataKey="name" />
-        <PolarRadiusAxis style={{ fontSize: "12px " }} />
-        <Radar
-          dataKey="value"
-          stroke="#3b82f6"
-          fill="#3b82f6"
-          fillOpacity={0.6}
-        />
-      </RadarChart>
-    </ResponsiveContainer>
+    <Card>
+      <CardHeader className="items-center pb-4">
+        <CardTitle>Gráfico Radar</CardTitle>
+        <CardDescription>Data</CardDescription>
+      </CardHeader>
+      <CardContent className="pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[340px] h-[340px]"
+        >
+          <RadarChart data={data}>
+            <ChartTooltip cursor={false} content={<CategoryTooltip />} />
+            <PolarAngleAxis dataKey="name" />
+            <PolarGrid />
+            <Radar
+              dataKey="value"
+              fill="hsl(var(--chart-2))"
+              fillOpacity={0.6}
+            />
+          </RadarChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2 font-medium leading-none">
+          Tendência de alta de 5,2% este mês <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="flex items-center gap-2 leading-none text-muted-foreground">
+          Mostrando o total de visitantes dos últimos 6 meses
+        </div>
+      </CardFooter>
+    </Card>
   );
-};
+}

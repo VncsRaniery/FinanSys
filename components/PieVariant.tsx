@@ -1,32 +1,40 @@
+"use client";
+
+import { TrendingUp } from "lucide-react";
+import { Cell, Legend, Pie, PieChart, Sector } from "recharts";
+import { PieSectorDataItem } from "recharts/types/polar/Pie";
 
 import {
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
-
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+} from "@/components/ui/chart";
+import { CategoryTooltip } from "./TooltipCharts";
 import { formatPercentage } from "@/lib/utils";
-import { CategoryTooltip } from "./CategoryTooltip";
 
-const COLORS = [
-  "#0062FF", // Azul Profundo
-  "#12C6FF", // Azul Céu Claro
-  "#FF647F", // Rosa Queimado
-  "#FF9354", // Laranja Suave
-  "#0052CC", // Azul Marinho
-  "#0ABAB5", // Verde Água
-  "#FF3B6A", // Rosa Vibrante
-  "#FFB74D", // Laranja Dourado
-  "#004BA0", // Azul Escuro
-  "#009688", // Verde Esmeralda
-  "#FF6F61", // Coral
-  "#FFA726", // Laranja Brilhante
-  "#005A8C", // Azul Steel
-  "#FF9E80", // Pêssego
-  "#FFB300", // Amarelo Brilhante
+const chartConfig = {} satisfies ChartConfig;
+
+const CORES = [
+  "hsl(var(--chart-1))",
+  "hsl(var(--chart-2))",
+  "hsl(var(--chart-3))",
+  "hsl(var(--chart-4))",
+  "hsl(var(--chart-5))",
+  "hsl(var(--chart-6))",
+  "hsl(var(--chart-7))",
+  "hsl(var(--chart-8))",
+  "hsl(var(--chart-9))",
+  "hsl(var(--chart-10))",
+  "hsl(var(--chart-11))",
+  "hsl(var(--chart-12))",
 ];
 
 type Props = {
@@ -36,58 +44,86 @@ type Props = {
   }[];
 };
 
-export const PieVariant = ({ data }: Props) => {
+export function PieVariant(props: Props) {
+  const { data } = props;
   return (
-    <ResponsiveContainer width="100%" height={350}>
-      <PieChart>
-        <Legend
-          layout="horizontal"
-          verticalAlign="bottom"
-          align="right"
-          iconType="circle"
-          content={({ payload }: any) => {
-            return (
-              <ul className="flex flex-col space-y-2">
-                {payload.map((entry: any, index: number) => (
-                  <li
-                    key={`item-${index}`}
-                    className="flex items-center space-x-2"
-                  >
-                    <span
-                      className="size-2 rounded-full"
-                      style={{ backgroundColor: entry.color }}
-                    />
-                    <div className="space-x-1">
-                      <span className="text-sm text-muted-foreground">
-                        {entry.value}
-                      </span>
-                      <span className="text-sm">
-                        {formatPercentage(entry.payload.percent * 100)}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            );
-          }}
-        />
-        <Tooltip content={<CategoryTooltip />} />
-        <Pie
-          data={data}
-          cx="50%"
-          cy="50%"
-          outerRadius={90}
-          innerRadius={60}
-          paddingAngle={2}
-          fill="8884d8"
-          dataKey="value"
-          labelLine={false}
+    <Card className="flex flex-col">
+      <CardHeader className="items-center pb-0">
+        <CardTitle>Gráfico de Pizza</CardTitle>
+        <CardDescription>Data</CardDescription>
+      </CardHeader>
+      <CardContent className="flex-1 pb-0">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[350px] h-[350px]"
         >
-          {data.map((_entry, index) => (
-            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-          ))}
-        </Pie>
-      </PieChart>
-    </ResponsiveContainer>
+          <PieChart>
+            <Legend
+              layout="horizontal"
+              verticalAlign="bottom"
+              align="center"
+              iconType="circle"
+              content={({ payload }: any) => {
+                return (
+                  <ul className="flex flex-wrap justify-center space-x-3 max-w-full overflow-hidden mb-4">
+                    {payload.map((entry: any, index: number) => (
+                      <li
+                        key={`item-${index}`}
+                        className="flex items-center space-x-2 mb-2"
+                      >
+                        <span
+                          className="size-2 rounded-full"
+                          style={{ backgroundColor: entry.color }}
+                        />
+                        <div className="space-x-1">
+                          <span className="text-sm text-muted-foreground">
+                            {entry.value}
+                          </span>
+                          <span className="text-sm">
+                            {formatPercentage(entry.payload.percent * 100)}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                );
+              }}
+            />
+            <ChartTooltip
+              cursor={false}
+              content={<CategoryTooltip hideLabel />}
+            />
+            <Pie
+              data={data}
+              dataKey="value"
+              innerRadius={60}
+              strokeWidth={5}
+              activeIndex={0}
+              activeShape={({
+                outerRadius = 0,
+                ...props
+              }: PieSectorDataItem) => (
+                <Sector {...props} outerRadius={outerRadius + 10} />
+              )}
+            >
+              {data.map((_entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={CORES[index % CORES.length]}
+                />
+              ))}
+            </Pie>
+          </PieChart>
+        </ChartContainer>
+      </CardContent>
+      <CardFooter className="flex-col gap-2 text-sm">
+        <div className="flex items-center gap-2 font-medium leading-none">
+          Tendência de alta de 5,2% este mês <TrendingUp className="h-4 w-4" />
+        </div>
+        <div className="leading-none text-muted-foreground">
+          Mostrando o total de visitantes dos últimos 6 meses
+        </div>
+      </CardFooter>
+    </Card>
   );
-};
+}
