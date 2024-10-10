@@ -29,10 +29,6 @@ const routes = [
     href: "/carteira",
     label: "Carteira",
   },
-  {
-    href: "/configuracoes",
-    label: "Configurações",
-  },
 ];
 
 function Navigation() {

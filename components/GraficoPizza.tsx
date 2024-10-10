@@ -17,7 +17,7 @@ import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { CategoryTooltip } from "./TooltipCharts";
+import { CategoryTooltip } from "./TooltipsGraficos";
 import { formatPercentage } from "@/lib/utils";
 
 const chartConfig = {} satisfies ChartConfig;
@@ -44,7 +44,7 @@ type Props = {
   }[];
 };
 
-export function PieVariant(props: Props) {
+export function GraficoPizza(props: Props) {
   const { data } = props;
   return (
     <Card className="flex flex-col">

@@ -16,7 +16,7 @@ import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { CategoryTooltip } from "./TooltipCharts";
+import { CategoryTooltip } from "./TooltipsGraficos";
 
 const chartConfig = {} satisfies ChartConfig;
 
@@ -42,7 +42,7 @@ type Props = {
   }[];
 };
 
-export function RadialVariant(props: Props) {
+export function GraficoRadial(props: Props) {
   const { data } = props;
   return (
     <Card className="flex flex-col">

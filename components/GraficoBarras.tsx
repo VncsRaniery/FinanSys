@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/chart";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { CustomTooltip } from "./TooltipCharts";
+import { CustomTooltip } from "./TooltipsGraficos";
 
 const chartConfig = {} satisfies ChartConfig;
 
@@ -30,7 +30,7 @@ type Props = {
   }[];
 };
 
-export function BarVariant(props: Props) {
+export function GraficoBarras(props: Props) {
   const { data } = props;
   return (
     <Card>

@@ -21,7 +21,7 @@ const AccountsPage = () => {
     if (accountsQuery.isLoading) {
         return (
             <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
-                <Card className="border-none drop-shadow-sm">
+                <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
                     <CardHeader className="">
                         <Skeleton className="h-8 w-48" />
                     </CardHeader>
@@ -37,7 +37,7 @@ const AccountsPage = () => {
 
   return (
     <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
-        <Card className="border-none drop-shadow-sm">
+        <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
             <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
                 <CardTitle className="text-xl line-clamp-1">
                     Página de contas

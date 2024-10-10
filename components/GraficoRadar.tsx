@@ -16,7 +16,7 @@ import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { CategoryTooltip } from "./TooltipCharts";
+import { CategoryTooltip } from "./TooltipsGraficos";
 
 const chartConfig = {} satisfies ChartConfig;
 
@@ -27,7 +27,7 @@ type Props = {
   }[];
 };
 
-export function RadarVariant(props: Props) {
+export function GraficoRadar(props: Props) {
   const { data } = props;
   return (
     <Card>

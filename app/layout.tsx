@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { QueryProvider } from "@/providers/query-provider";
 import { SheetProvider } from "@/providers/sheet-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,13 +21,20 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="pt-BR">
+      <html lang="pt-BR" suppressHydrationWarning>
         <body className={montserrat.className}>
+        <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
           <QueryProvider>
             <SheetProvider />
             <Toaster />
             {children}
           </QueryProvider>
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>

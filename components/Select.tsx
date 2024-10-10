@@ -1,8 +1,12 @@
-"use client";
-
-import { useMemo } from "react";
-import { SingleValue } from "react-select";
-import CreateableSelect from "react-select/creatable";
+import { useMemo, useEffect, useState } from "react";
+import {
+  Select as ShadSelect,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 type Props = {
   onChange: (value?: string) => void;
@@ -11,6 +15,7 @@ type Props = {
   value?: string | null | undefined;
   disabled?: boolean;
   placeholder?: string;
+  theme?: "dark" | "light";
 };
 
 export const Select = ({
@@ -20,33 +25,52 @@ export const Select = ({
   onCreate,
   options = [],
   placeholder,
+  theme: initialTheme = "light",
 }: Props) => {
-  const onSelect = (option: SingleValue<{ label: string; value: string }>) => {
-    onChange(option?.value);
-  };
+  const [theme, setTheme] = useState(initialTheme);
+
+  useEffect(() => {
+    const handleThemeChange = () => {
+      const newTheme = document.documentElement.classList.contains("dark")
+        ? "dark"
+        : "light";
+      setTheme(newTheme);
+    };
+
+    handleThemeChange();
+    window.addEventListener("themeChange", handleThemeChange);
+
+    return () => {
+      window.removeEventListener("themeChange", handleThemeChange);
+    };
+  }, []);
 
   const formattedValue = useMemo(() => {
-    return options.find((option) => option.value === value);
+    return options.find((option) => option.value === value)?.label || "";
   }, [options, value]);
 
   return (
-    <CreateableSelect
-      placeholder={placeholder}
-      className="text-sm h-10"
-      styles={{
-        control: (base) => ({
-          ...base,
-          borderColor: "#e2e8f0",
-          ":hover": {
-            borderColor: "#e2e8f0",
-          },
-        }),
-      }}
-      value={formattedValue}
-      onChange={onSelect}
-      options={options}
-      onCreateOption={onCreate}
-      isDisabled={disabled}
-    />
+    <ShadSelect
+      onValueChange={(val) =>
+        onChange(options.find((option) => option.label === val)?.value)
+      }
+    >
+      <SelectTrigger
+        className={`text-sm h-10 ${
+          theme === "dark" ? "bg-transparent" : "bg-white border-gray-300"
+        }`}
+      >
+        <SelectValue placeholder={placeholder} defaultValue={formattedValue} />
+      </SelectTrigger>
+      <SelectContent>
+        <SelectGroup>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.label}>
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectGroup>
+      </SelectContent>
+    </ShadSelect>
   );
 };

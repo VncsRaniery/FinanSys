@@ -7,9 +7,9 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
-import { AreaVariant } from "./GraficoAreas";
-import { BarVariant } from "./GraficoBarras";
-import { LineVariant } from "./GraficoLinhas";
+import { GraficoAreas } from "./GraficoAreas";
+import { GraficoBarras } from "./GraficoBarras";
+import { GraficoLinhas } from "./GraficoLinhas";
 import {
   Select,
   SelectContent,
@@ -35,7 +35,7 @@ export const Chart = ({ data = [] }: Props) => {
   };
 
   return (
-    <Card className="border-none drop-shadow-sm">
+    <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
         <CardTitle className="text-xl line-clamp-1">Transações</CardTitle>
         <Select defaultValue={chartType} onValueChange={onTypeChange}>
@@ -49,13 +49,13 @@ export const Chart = ({ data = [] }: Props) => {
                 <p className="line-clamp-1">Gráfico de área</p>
               </div>
             </SelectItem>
-            <SelectItem value="line">
+            <SelectItem value="linha">
               <div className="flex items-center">
                 <LineChart className="size-4 mr-2 shrink-0" />
                 <p className="line-clamp-1">Gráfico de linhas</p>
               </div>
             </SelectItem>
-            <SelectItem value="bar">
+            <SelectItem value="barra">
               <div className="flex items-center">
                 <BarChart3 className="size-4 mr-2 shrink-0" />
                 <p className="line-clamp-1">Gráfico de barras</p>
@@ -74,9 +74,9 @@ export const Chart = ({ data = [] }: Props) => {
           </div>
         ) : (
           <>
-            {chartType === "area" && <AreaVariant data={data} />}
-            {chartType === "line" && <LineVariant data={data} />}
-            {chartType === "bar" && <BarVariant data={data} />}
+            {chartType === "area" && <GraficoAreas data={data} />}
+            {chartType === "linha" && <GraficoLinhas data={data} />}
+            {chartType === "barra" && <GraficoBarras data={data} />}
           </>
         )}
       </CardContent>
@@ -86,7 +86,7 @@ export const Chart = ({ data = [] }: Props) => {
 
 export const ChartLoading = () => {
   return (
-    <Card className="border-none drop-shadow-sm">
+    <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-8 lg:w-[120px] w-full" />

@@ -10,7 +10,7 @@ export default function Page() {
           <h1 className="font-bold text-3xl text-[#2E2A47]">
             Bem vindo de volta!
           </h1>
-          <p className="text-base text-[#7E3CA0">
+          <p className="text-base text-[#2E2A47]">
             Faça login ou crie uma conta para voltar ao seu painel.
           </p>
         </div>
@@ -23,7 +23,7 @@ export default function Page() {
           </ClerkLoading>
         </div>
       </div>
-      <div className="h-full bg-blue-600 hidden lg:flex items-center justify-center">
+      <div className="h-full hidden lg:flex items-center justify-center bg-gradient-to-l from-[#2E7D32] to-white via-[#2E7D32] via-40%">
         <Image src="/logo.svg" height={100} width={100} alt="logo" />
       </div>
     </div>

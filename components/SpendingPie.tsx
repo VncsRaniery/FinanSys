@@ -8,9 +8,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { PieVariant } from "./GraficoPizza";
-import { RadarVariant } from "./GraficoRadar";
-import { RadialVariant } from "./GraficoRadial";
+import { GraficoPizza } from "./GraficoPizza";
+import { GraficoRadar } from "./GraficoRadar";
+import { GraficoRadial } from "./GraficoRadial";
 import { Skeleton } from "./ui/skeleton";
 
 type Props = {
@@ -21,14 +21,14 @@ type Props = {
 };
 
 export const SpendingPie = ({ data = [] }: Props) => {
-  const [chartType, setChartType] = useState("pie");
+  const [chartType, setChartType] = useState("pizza");
 
   const onTypeChange = (type: string) => {
     setChartType(type);
   };
 
   return (
-    <Card className="border-none drop-shadow-sm">
+    <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
         <CardTitle className="text-xl line-clamp-1">Categorias</CardTitle>
         <Select defaultValue={chartType} onValueChange={onTypeChange}>
@@ -36,7 +36,7 @@ export const SpendingPie = ({ data = [] }: Props) => {
             <SelectValue placeholder="Tipo de gráfico" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="pie">
+            <SelectItem value="pizza">
               <div className="flex items-center">
                 <PieChart className="size-4 mr-2 shrink-0" />
                 <p className="line-clamp-1">Gráfico de pizza</p>
@@ -67,9 +67,9 @@ export const SpendingPie = ({ data = [] }: Props) => {
           </div>
         ) : (
           <>
-            {chartType === "pie" && <PieVariant data={data} />}
-            {chartType === "radar" && <RadarVariant data={data} />}
-            {chartType === "radial" && <RadialVariant data={data} />}
+            {chartType === "pizza" && <GraficoPizza data={data} />}
+            {chartType === "radar" && <GraficoRadar data={data} />}
+            {chartType === "radial" && <GraficoRadial data={data} />}
           </>
         )}
       </CardContent>
@@ -79,7 +79,7 @@ export const SpendingPie = ({ data = [] }: Props) => {
 
 export const SpendingPieLoading = () => {
   return (
-    <Card className="border-none drop-shadow-sm">
+    <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
         <Skeleton className="h-8 w-48" />
         <Skeleton className="h-8 lg:w-[120px] w-full" />
