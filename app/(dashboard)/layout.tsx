@@ -1,4 +1,8 @@
-import { Header } from "@/components/Header";
+import { BemVindoMsg } from "@/components/MensagemBemVindo";
+import { Filters } from "@/components/Filters";
+import { HeaderLogo } from "@/components/Logotipo";
+import { Navbar } from "@/components/Navbar";
+import { NavbarMobile } from "@/components/NavbarMobile";
 
 type Props = {
   children: React.ReactNode;
@@ -7,10 +11,25 @@ type Props = {
 const DashboardLayout = ({ children }: Props) => {
   return (
     <>
-      <Header />
-      <main className="px-3 lg:px-14">{children}</main>
+      <Navbar />
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+        <NavbarMobile />
+        <main className="px-4 py-8 lg:px-14 pb-36">
+          <div className="max-w-screen-2xl mx-auto">
+            <div className="w-full flex items-center justify-between mb-14">
+              <div className="flex items-center lg:gap-x-16">
+                <HeaderLogo />
+              </div>
+            </div>
+            <BemVindoMsg />
+            <Filters />
+          </div>
+        </main>
+        <div className="px-3 lg:px-14">{children}</div>
+      </div>
     </>
   );
 };
 
 export default DashboardLayout;
+
