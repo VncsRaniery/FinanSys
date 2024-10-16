@@ -1,6 +1,6 @@
 import { format } from "date-fns";
 import { formatCurrency } from "@/lib/utils";
-import { Separator } from "./ui/separator";
+import { Separator } from "@/components/ui/separator";
 import { ptBR } from "date-fns/locale";
 
 // TOOLTIP DOS GRÁFICOS DE CATEGORIAS

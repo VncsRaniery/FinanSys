@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -23,7 +23,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "./ui/input";
+import { Input } from "@/components/ui/input";
 import { Trash } from "lucide-react";
 import { useConfirm } from "@/hooks/use-confirm";
 

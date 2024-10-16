@@ -6,7 +6,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraficoAreas } from "./GraficoAreas";
 import { GraficoBarras } from "./GraficoBarras";
 import { GraficoLinhas } from "./GraficoLinhas";
@@ -16,8 +16,8 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "./ui/select";
-import { Skeleton } from "./ui/skeleton";
+} from "@/components/ui/select";
+import { Skeleton } from "@/components/ui/skeleton";
 
 type Props = {
   data?: {

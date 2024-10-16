@@ -18,7 +18,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "@/components/ui/tooltip";
 import { ModeToggle } from "./AlterarModo";
 import { ClerkLoaded, ClerkLoading, UserButton } from "@clerk/nextjs";
 
