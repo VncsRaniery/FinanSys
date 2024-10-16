@@ -25,8 +25,8 @@ const chartConfig = {} satisfies ChartConfig;
 type Props = {
   data: {
     date: string;
-    income: number;
-    expenses: number;
+    renda: number;
+    despesas: number;
   }[];
 };
 
@@ -63,14 +63,14 @@ export function GraficoLinhas(props: Props) {
             />
             <ChartTooltip cursor={false} content={<CustomTooltip />} />
             <Line
-              dataKey="income"
+              dataKey="renda"
               type="monotone"
               stroke="#10B981"
               strokeWidth={2}
               dot={false}
             />
             <Line
-              dataKey="expenses"
+              dataKey="despesas"
               type="monotone"
               stroke="#f43f5e"
               strokeWidth={2}

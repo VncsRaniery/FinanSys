@@ -25,8 +25,8 @@ const chartConfig = {} satisfies ChartConfig;
 type Props = {
   data: {
     date: string;
-    income: number;
-    expenses: number;
+    renda: number;
+    despesas: number;
   }[];
 };
 
@@ -64,31 +64,31 @@ export function GraficoAreas(props: Props) {
             />
             <ChartTooltip cursor={false} content={<CustomTooltip />} />
             <defs>
-              <linearGradient id="income" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="renda" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#10B981" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="#10B981" stopOpacity={0.1} />
               </linearGradient>
-              <linearGradient id="expenses" x1="0" y1="0" x2="0" y2="1">
+              <linearGradient id="despesas" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="5%" stopColor="#f43f5e" stopOpacity={0.8} />
                 <stop offset="95%" stopColor="#f43f5e" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <Area
-              dataKey="income"
+              dataKey="renda"
               type="natural"
-              fill="url(#income)"
+              fill="url(#renda)"
               fillOpacity={0.4}
               stroke="#10B981"
-              stackId="income"
+              stackId="renda"
               className="drop-shadow-sm"
             />
             <Area
-              dataKey="expenses"
+              dataKey="despesas"
               type="natural"
-              fill="url(#expenses)"
+              fill="url(#despesas)"
               fillOpacity={0.4}
               stroke="#f43f5e"
-              stackId="expenses"
+              stackId="despesas"
               className="drop-shadow-sm"
             />
           </AreaChart>

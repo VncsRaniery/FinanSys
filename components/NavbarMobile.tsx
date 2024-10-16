@@ -4,7 +4,6 @@ import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import {
   ArrowRightLeft,
   ChartBarStacked,
-  ChartColumnDecreasing,
   Github,
   Home,
   Landmark,

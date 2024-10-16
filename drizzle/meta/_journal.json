@@ -5,29 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1727369287814,
-      "tag": "0000_thin_toad_men",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1727384181879,
-      "tag": "0001_striped_diamondback",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1727541303462,
-      "tag": "0002_living_silver_surfer",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1727568672077,
-      "tag": "0003_noisy_leader",
+      "when": 1729091484369,
+      "tag": "0000_regular_elektra",
       "breakpoints": true
     }
   ]

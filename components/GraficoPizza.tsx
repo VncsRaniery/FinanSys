@@ -17,7 +17,7 @@ import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { CategoryTooltip } from "./TooltipsGraficos";
+import { CategoriaTooltip } from "./TooltipsGraficos";
 import { formatPercentage } from "@/lib/utils";
 
 const chartConfig = {} satisfies ChartConfig;
@@ -39,7 +39,7 @@ const CORES = [
 
 type Props = {
   data: {
-    name: string;
+    nome: string;
     value: number;
   }[];
 };
@@ -77,7 +77,7 @@ export function GraficoPizza(props: Props) {
                         />
                         <div className="space-x-1">
                           <span className="text-sm text-muted-foreground">
-                            {entry.value}
+                            {entry.payload.nome}
                           </span>
                           <span className="text-sm">
                             {formatPercentage(entry.payload.percent * 100)}
@@ -91,7 +91,7 @@ export function GraficoPizza(props: Props) {
             />
             <ChartTooltip
               cursor={false}
-              content={<CategoryTooltip hideLabel />}
+              content={<CategoriaTooltip hideLabel />}
             />
             <Pie
               data={data}

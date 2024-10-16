@@ -7,8 +7,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useDeleteTransaction } from "@/features/transactions/api/use-delete-transaction";
-import { useOpenTransaction } from "@/features/transactions/hooks/use-open-transaction";
+import { useDeleteTransferencia } from "@/features/transferencias/api/use-delete-transferencia";
+import { useOpenTransferencia } from "@/features/transferencias/hooks/use-open-transferencia";
 import { useConfirm } from "@/hooks/use-confirm";
 import { Edit, MoreHorizontal, Trash } from "lucide-react";
 
@@ -18,12 +18,12 @@ type Props = {
 
 export const Actions = ({ id }: Props) => {
   const [ConfirmDialog, confirm] = useConfirm(
-    "Deletar transação",
-    "Tem certeza de que deseja deletar está transação?"
+    "Deletar transferência",
+    "Tem certeza de que deseja deletar está transferência?"
   );
 
-  const deleteMutation = useDeleteTransaction(id);
-  const { onOpen } = useOpenTransaction();
+  const deleteMutation = useDeleteTransferencia(id);
+  const { onOpen } = useOpenTransferencia();
 
   const handleDelete = async () => {
     const ok = await confirm();

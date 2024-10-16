@@ -22,8 +22,8 @@ import { Skeleton } from "./ui/skeleton";
 type Props = {
   data?: {
     date: string;
-    income: number;
-    expenses: number;
+    renda: number;
+    despesas: number;
   }[];
 };
 
@@ -37,7 +37,7 @@ export const Chart = ({ data = [] }: Props) => {
   return (
     <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
-        <CardTitle className="text-xl line-clamp-1">Transações</CardTitle>
+        <CardTitle className="text-xl line-clamp-1">Transferências</CardTitle>
         <Select defaultValue={chartType} onValueChange={onTypeChange}>
           <SelectTrigger className="lg:w-auto h-9 rounded-md px-3">
             <SelectValue placeholder="Tipo de gráfico" />

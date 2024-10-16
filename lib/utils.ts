@@ -8,12 +8,12 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function convertAmountFromMiliunits(amount: number) {
-  return amount / 1000;
+export function convertValorFromMiliunits(valor: number) {
+  return valor / 1000;
 }
 
-export function convertAmountToMiliunits(amount: number) {
-  return Math.round(amount * 1000);
+export function convertValorToMiliunits(valor: number) {
+  return Math.round(valor * 1000);
 }
 
 export function formatCurrency(value: number) {
@@ -35,8 +35,8 @@ export function calculcatePercentageChange(current: number, previous: number) {
 export function fillMissingDays(
   activeDays: {
     date: Date;
-    income: number;
-    expenses: number;
+    renda: number;
+    despesas: number;
   }[],
   startDate: Date,
   endDate: Date
@@ -50,7 +50,7 @@ export function fillMissingDays(
     end: endDate,
   });
 
-  const transactionsByDay = allDays.map((day) => {
+  const transferenciasByDay = allDays.map((day) => {
     const found = activeDays.find((d) => isSameDay(d.date, day));
 
     if (found) {
@@ -58,13 +58,13 @@ export function fillMissingDays(
     } else {
       return {
         date: day,
-        income: 0,
-        expenses: 0,
+        renda: 0,
+        despesas: 0,
       };
     }
   });
 
-  return transactionsByDay;
+  return transferenciasByDay;
 }
 
 type Period = {

@@ -25,8 +25,8 @@ const chartConfig = {} satisfies ChartConfig;
 type Props = {
   data: {
     date: string;
-    income: number;
-    expenses: number;
+    renda: number;
+    despesas: number;
   }[];
 };
 
@@ -55,8 +55,8 @@ export function GraficoBarras(props: Props) {
               }
             />
             <ChartTooltip cursor={false} content={<CustomTooltip />} />
-            <Bar dataKey="income" fill="#10B981" radius={4} />
-            <Bar dataKey="expenses" fill="#f43f5e" radius={4} />
+            <Bar dataKey="renda" fill="#10B981" radius={4} />
+            <Bar dataKey="despesas" fill="#f43f5e" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>

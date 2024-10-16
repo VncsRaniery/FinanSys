@@ -16,7 +16,7 @@ import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { CategoryTooltip } from "./TooltipsGraficos";
+import { CategoriaTooltip } from "./TooltipsGraficos";
 
 const chartConfig = {} satisfies ChartConfig;
 
@@ -37,7 +37,7 @@ const CORES = [
 
 type Props = {
   data: {
-    name: string;
+    nome: string;
     value: number;
   }[];
 };
@@ -67,12 +67,12 @@ export function GraficoRadial(props: Props) {
           >
             <ChartTooltip
               cursor={false}
-              content={<CategoryTooltip hideLabel />}
+              content={<CategoriaTooltip hideLabel />}
             />
             <RadialBar dataKey="value" background>
               <LabelList
                 position="insideStart"
-                dataKey="name"
+                dataKey="nome"
                 className="fill-white capitalize mix-blend-luminosity"
                 fontSize={11}
               />

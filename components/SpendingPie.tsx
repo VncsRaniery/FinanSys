@@ -15,7 +15,7 @@ import { Skeleton } from "./ui/skeleton";
 
 type Props = {
   data?: {
-    name: string;
+    nome: string;
     value: number;
   }[];
 };

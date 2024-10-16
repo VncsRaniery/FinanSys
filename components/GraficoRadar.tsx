@@ -16,13 +16,13 @@ import {
   ChartContainer,
   ChartTooltip,
 } from "@/components/ui/chart";
-import { CategoryTooltip } from "./TooltipsGraficos";
+import { CategoriaTooltip } from "./TooltipsGraficos";
 
 const chartConfig = {} satisfies ChartConfig;
 
 type Props = {
   data: {
-    name: string;
+    nome: string;
     value: number;
   }[];
 };
@@ -41,8 +41,8 @@ export function GraficoRadar(props: Props) {
           className="w-full aspect-square max-h-[340px] h-[340px]"
         >
           <RadarChart data={data}>
-            <ChartTooltip cursor={false} content={<CategoryTooltip />} />
-            <PolarAngleAxis dataKey="name" />
+            <ChartTooltip cursor={false} content={<CategoriaTooltip />} />
+            <PolarAngleAxis dataKey="nome" />
             <PolarGrid />
             <Radar
               dataKey="value"

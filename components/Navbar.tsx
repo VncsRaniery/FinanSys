@@ -1,14 +1,12 @@
-"use client"
+"use client";
 
 import {
   ArrowRightLeft,
   ChartBarStacked,
-  ChartColumnDecreasing,
   Github,
   Home,
   Landmark,
   Loader2,
-  Package2,
   Settings,
   Wallet,
 } from "lucide-react";

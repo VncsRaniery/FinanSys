@@ -3,61 +3,64 @@ import { createInsertSchema } from "drizzle-zod"
 import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { relations } from "drizzle-orm";
 
-export const accounts = pgTable
-("accounts", {
+// Tabela de contas
+export const contas = pgTable("contas", {
     id: text("id").primaryKey(),
     plaidId: text("plaid_id"),
-    name: text("name").notNull(),
+    nome: text("nome").notNull(),
     userId: text("user_id").notNull(),
 });
 
-export const accountsRelations = relations(accounts, ({ many }) => ({
-    transactions: many(transactions),
+export const contasRelacoes = relations(contas, ({ many }) => ({
+    transferencias: many(transferencias),
 }));
 
-export const insertAccountSchema = createInsertSchema(accounts);
+export const inserirContaSchema = createInsertSchema(contas);
 
-export const categories = pgTable
-("categories", {
+// Tabela de categorias
+export const categorias = pgTable("categorias", {
     id: text("id").primaryKey(),
     plaidId: text("plaid_id"),
-    name: text("name").notNull(),
+    nome: text("nome").notNull(),
     userId: text("user_id").notNull(),
 });
 
-export const categoriesRelations = relations(categories, ({ many }) => ({
-    transactions: many(transactions),
+export const categoriasRelacoes = relations(categorias, ({ many }) => ({
+    transferencias: many(transferencias),
 }));
 
-export const insertCategorySchema = createInsertSchema(categories);
+export const inserirCategoriaSchema = createInsertSchema(categorias);
 
-export const transactions = pgTable("transactions", {
+// Tabela de transferências
+export const transferencias = pgTable("transferencias", {
     id: text("id").primaryKey(),
-    amount: integer("amount").notNull(),
-    payee: text("payee").notNull(),
-    notes: text("notes"),
-    date: timestamp("date", {
+    valor: integer("valor").notNull(),
+    recebedor: text("recebedor").notNull(),
+    notas: text("notas"),
+    data: timestamp("data", {
         mode: "date"
     }).notNull(),
-    accountId: text("account_id").references(() => accounts.id, {
-        onDelete: "cascade",
-    }).notNull(),
-    categoryId: text("category_id").references(() => categories.id, {
-        onDelete: "set null",
-    }),
+    contaId: text("conta_id")
+        .references(() => contas.id, {
+            onDelete: "cascade",
+        }).notNull(),
+    categoriaId: text("categoria_id")
+        .references(() => categorias.id, {
+            onDelete: "set null",
+        }),
 });
 
-export const transactionsRelations = relations(transactions, ({ one }) => ({
-    account: one(accounts, {
-        fields: [transactions.accountId],
-        references: [accounts.id],
+export const transferenciasRelacoes = relations(transferencias, ({ one }) => ({
+    conta: one(contas, {
+        fields: [transferencias.contaId],
+        references: [contas.id],
     }),
-    categories: one(categories, {
-        fields: [transactions.categoryId],
-        references: [categories.id],
+    categoria: one(categorias, {
+        fields: [transferencias.categoriaId],
+        references: [categorias.id],
     }),
 }));
 
-export const insertTransactionSchema = createInsertSchema(transactions, {
-    date: z.coerce.date(),
+export const inserirTransferenciaSchema = createInsertSchema(transferencias, {
+    data: z.coerce.date(),
 });

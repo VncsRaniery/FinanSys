@@ -3,19 +3,19 @@
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
-import { useGetTransactions } from "@/features/transactions/api/use-get-transactions";
-import { useBulkDeleteTransactions } from "@/features/transactions/api/use-bulk-delete-transactions";
-import { transactions as transactionSchema } from "@/db/schema";
+import { useNewTransferencia } from "@/features/transferencias/hooks/use-new-transferencia";
+import { useGetTransferencias } from "@/features/transferencias/api/use-get-transferencias";
+import { useBulkDeleteTransferencias } from "@/features/transferencias/api/use-bulk-delete-transferencias";
+import { transferencias as transferenciaSchema } from "@/db/schema";
 import { Loader2, Plus } from "lucide-react";
-import { columns } from "./columns";
-import { UploadButton } from "./upload-button";
+import { columns } from "./Colunas";
+import { UploadButton } from "./BotaoUpload";
 import { DataTable } from "@/components/DataTable";
 import { useState } from "react";
-import { ImportCard } from "./import-card";
-import { useSelectAccount } from "@/features/accounts/hooks/use-select-account";
+import { ImportCard } from "./ImportarCard";
+import { useSelectConta } from "@/features/contas/hooks/use-select-conta";
 import { toast } from "sonner";
-import { useBulkCreateTransactions } from "@/features/transactions/api/use-bulk-create-transactions copy";
+import { useBulkCreateTransferencias } from "@/features/transferencias/api/use-bulk-create-transferencias";
 
 enum VARIANTS {
   LIST = "LIST",
@@ -28,8 +28,8 @@ const INITIAL_IMPORT_RESULTS = {
   meta: [],
 };
 
-const TransactionsPage = () => {
-  const [AccountDialog, confirm] = useSelectAccount();
+const TransferenciasPage = () => {
+  const [ContaDialog, confirm] = useSelectConta();
   const [variant, setVariant] = useState<VARIANTS>(VARIANTS.LIST);
   const [importResults, setImportResults] = useState(INITIAL_IMPORT_RESULTS);
 
@@ -44,38 +44,37 @@ const TransactionsPage = () => {
     setVariant(VARIANTS.LIST);
   };
 
-  const newTransaction = useNewTransaction();
-  const createTransactions = useBulkCreateTransactions();
-  const deleteTransactions = useBulkDeleteTransactions();
-  const transactionsQuery = useGetTransactions();
-  const transactions = transactionsQuery.data || [];
+  const newTransferencia = useNewTransferencia();
+  const createTransferencias = useBulkCreateTransferencias();
+  const deleteTransferencias = useBulkDeleteTransferencias();
+  const transferenciasQuery = useGetTransferencias();
+  const transferencias = transferenciasQuery.data || [];
 
   const isDisabled =
-    transactionsQuery.isLoading || 
-    deleteTransactions.isPending;
+    transferenciasQuery.isLoading || deleteTransferencias.isPending;
 
   const onSubmitImport = async (
-    values: typeof transactionSchema.$inferInsert[],
+    values: (typeof transferenciaSchema.$inferInsert)[]
   ) => {
-    const accountId = await confirm();
+    const contaId = await confirm();
 
-    if (!accountId) {
+    if (!contaId) {
       return toast.error("Por favor, selecione uma conta para continuar.");
     }
 
     const data = values.map((value) => ({
       ...value,
-      accountId: accountId as string,
+      contaId: contaId as string,
     }));
 
-    createTransactions.mutate(data, {
+    createTransferencias.mutate(data, {
       onSuccess: () => {
         onCancelImport();
       },
     });
   };
 
-  if (transactionsQuery.isLoading) {
+  if (transferenciasQuery.isLoading) {
     return (
       <div className="max-w-screen-2xl mx-auto w-full pb-10 -mt-24">
         <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
@@ -95,7 +94,7 @@ const TransactionsPage = () => {
   if (variant === VARIANTS.IMPORT) {
     return (
       <>
-      <AccountDialog />
+        <ContaDialog />
         <ImportCard
           data={importResults.data}
           onCancel={onCancelImport}
@@ -110,13 +109,13 @@ const TransactionsPage = () => {
       <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
         <CardHeader className="gap-y-2 lg:flex-row lg:items-center lg:justify-between">
           <CardTitle className="text-xl line-clamp-1">
-            Histórico de transações
+            Histórico de transferências
           </CardTitle>
           <div className="flex flex-col lg:flex-row gap-y-2 items-center gap-x-2">
-            <Button 
-            onClick={newTransaction.onOpen} 
-            size="sm"
-            className="w-full lg:w-auto"
+            <Button
+              onClick={newTransferencia.onOpen}
+              size="sm"
+              className="w-full lg:w-auto"
             >
               <Plus className="size-4 mr-2" />
               Adicionar
@@ -126,12 +125,12 @@ const TransactionsPage = () => {
         </CardHeader>
         <CardContent>
           <DataTable
-            filterKey="beneficiário"
+            filterKey="recebedor"
             columns={columns}
-            data={transactions}
+            data={transferencias}
             onDelete={(row) => {
               const ids = row.map((r) => r.original.id);
-              deleteTransactions.mutate({ ids });
+              deleteTransferencias.mutate({ ids });
             }}
             disabled={isDisabled}
           />
@@ -141,4 +140,4 @@ const TransactionsPage = () => {
   );
 };
 
-export default TransactionsPage;
+export default TransferenciasPage;
