@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<h1 align="start">
+  FinanSys - Gerenciamento Financeiro
+</h1>
 
-## Getting Started
+<img width="1280" alt="FinanSys Thumbnail website" src="/public/assets/FinanSysDashboard.svg">
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Introdução
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+FinanSys é um site moderno e totalmente responsivo, construído com uma poderosa pilha de tecnologia. Este projeto mostra o uso de Next.js para renderização no lado do servidor, TailwindCSS para um estilo elegante, UI shadcn para componentes elegantes e Clerk para autenticação segura.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologias utilizadas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js**: Para construir o site baseado em React.
+- **TailwindCSS**: Para estilizar com CSS utilitário.
+- **Shadcn UI**: Para componentes UI.
+- **Magic UI**: Para componentes UI.
+- **Clerk**: Para autenticação de usuários.
+- **Hono**: Framework para facilitar a criação de APIs performáticas, com uma sintaxe simples e direta.
+- **Neon**: Banco de dados Postgres gerenciado na nuvem, com escalabilidade e alta performance.
+- **Drizzle**: facilita a interação com o banco de dados SQL de maneira eficiente e com total suporte à tipagem TypeScript, o que aumenta a segurança do código.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## Início rápido
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+Certifique-se de ter instalado
+- Node.js
+- Git
+- npm / yarn / pnpm / bun
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clonar este repositório:
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/
+   cd FinanSys
+   ```
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+3. Configurar variáveis de ​ambientes:
+   ```bash
+   # app
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   
+   # clerk
+   CLERK_SECRET_KEY=
+   CLERK_PUBLISHABLE_KEY=
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   # database neon
+   DATABASE_URL=
+   ```
+5. Execute o servidor de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+6. Abra seu navegador e navegue até http://localhost:3000 para ver o site em ação.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Assets
+Baixe todos os recursos necessários para este projeto [aqui](https://#).
