@@ -32,7 +32,7 @@ Certifique-se de ter instalado
 1. Clonar este repositório:
 
    ```bash
-   git clone https://github.com/
+   git clone https://github.com/VncsRaniery/FinanSys
    cd FinanSys
    ```
 2. Instale as dependências:

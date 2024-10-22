@@ -71,7 +71,7 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <>
       <ConfirmDialog />
       <div className="flex items-center py-4">
         <Input
@@ -175,6 +175,6 @@ export function DataTable<TData, TValue>({
           Próximo
         </Button>
       </div>
-    </div>
+    </>
   );
 }

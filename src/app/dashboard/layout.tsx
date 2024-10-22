@@ -15,7 +15,6 @@ type Props = {
 };
 
 const DashboardLayout = ({ children }: Props) => {
-
   return (
     <>
       <Navbar />
