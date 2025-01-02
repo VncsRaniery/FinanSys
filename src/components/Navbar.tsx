@@ -103,6 +103,9 @@ export function Navbar() {
             </TooltipTrigger>
             <TooltipContent side="right">Contas</TooltipContent>
           </Tooltip>
+          {/*
+
+
           <Tooltip>
             <TooltipTrigger asChild>
               <Link
@@ -120,6 +123,10 @@ export function Navbar() {
             </TooltipTrigger>
             <TooltipContent side="right">Categorias</TooltipContent>
           </Tooltip>
+
+
+
+          */}
           <Tooltip>
             <TooltipTrigger asChild>
               <Link

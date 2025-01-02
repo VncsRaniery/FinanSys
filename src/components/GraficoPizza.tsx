@@ -49,7 +49,7 @@ export function GraficoPizza(props: Props) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Gráfico de Pizza</CardTitle>
+        <CardTitle>Despesas</CardTitle>
         <CardDescription>Data</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
