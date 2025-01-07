@@ -30,7 +30,7 @@ type Props = {
 export function GraficoRadar(props: Props) {
   const { data } = props;
   return (
-    <Card>
+    <Card className="border-none flex flex-col">
       <CardHeader className="items-center pb-4">
         <CardTitle>Gráfico Radar</CardTitle>
         <CardDescription>Data</CardDescription>

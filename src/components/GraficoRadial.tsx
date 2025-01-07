@@ -39,7 +39,7 @@ type Props = {
 export function GraficoRadial(props: Props) {
   const { data } = props;
   return (
-    <Card className="flex flex-col">
+    <Card className="border-none flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>Gráfico Radial</CardTitle>
         <CardDescription>Data</CardDescription>

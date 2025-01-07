@@ -41,7 +41,7 @@ type Props = {
 export function GraficoPizza(props: Props) {
   const { data } = props;
   return (
-    <Card className="flex flex-col">
+    <Card className="border-none flex flex-col">
       <CardHeader className="items-center pb-0">
         <CardTitle>Despesas</CardTitle>
         <CardDescription>Data</CardDescription>
