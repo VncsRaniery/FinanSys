@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { SheetDemo } from "./edit-porcentagens"; // Importar o SheetDemo
+import { SheetDemo } from "./edit-porcentagens";
 
 type CardProps = React.ComponentProps<typeof Card> & {
   percentuais: {
@@ -18,7 +18,7 @@ type CardProps = React.ComponentProps<typeof Card> & {
 export function CardGastos({
   percentuais,
   onPercentuaisChange,
-  ganhoMensal, // Recebendo o ganhoMensal como prop
+  ganhoMensal,
   className,
   ...props
 }: CardProps) {

@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CardGastos } from "./CardGastos";
-import { ChartCarteira } from "./Chart";
-import { Input } from "@/components/ui/input"; // Importar o Input
+import { Input } from "@/components/ui/input";
 import { DataTable } from "./DataTable";
+import { useGetResumo } from "@/features/resumo/api/use-get-resumo";
+import { SpendingPie } from "@/components/SpendingPie";
 
 const CarteiraPage = () => {
+  const { data, isLoading } = useGetResumo();
+
   const [percentuais, setPercentuais] = useState({
     custosFixos: 35,
     conforto: 15,
@@ -17,10 +20,8 @@ const CarteiraPage = () => {
     conhecimento: 5,
   });
 
-  // Novo estado para o ganho mensal
   const [ganhoMensal, setGanhoMensal] = useState<number>(0);
 
-  // Função para atualizar os percentuais
   const handlePercentuaisChange = (newPercentuais: typeof percentuais) => {
     setPercentuais(newPercentuais);
   };
@@ -33,7 +34,6 @@ const CarteiraPage = () => {
         </CardHeader>
 
         <CardContent>
-          {/* Input de Ganho Mensal movido para a página principal */}
           <div className="flex w-full max-w-sm items-center space-x-2 py-4">
             <Input
               className="max-w-sm"
@@ -48,12 +48,11 @@ const CarteiraPage = () => {
               <CardGastos
                 percentuais={percentuais}
                 onPercentuaisChange={handlePercentuaisChange}
-                ganhoMensal={ganhoMensal} // Passar o ganhoMensal como prop para o CardGastos
+                ganhoMensal={ganhoMensal}
               />
             </div>
-
             <div className="col-span-1 lg:col-span-3 xl:col-span-2">
-              <ChartCarteira />
+              <SpendingPie data={data?.categorias} />
             </div>
           </div>
           <DataTable />
