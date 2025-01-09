@@ -2,7 +2,7 @@
   FinanSys - Gerenciamento Financeiro
 </h1>
 
-<img width="1280" alt="FinanSys Thumbnail website" src="/public/assets/FinanSysDashboard.svg">
+<img width="1280" alt="FinanSys Thumbnail" src="/public/assets/FinanSys.png">
 
 
 ## Introdução
@@ -50,6 +50,7 @@ Certifique-se de ter instalado
    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
    NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
    NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+   NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL='/onboard'
 
    # database neon
    DATABASE_URL=
@@ -59,6 +60,4 @@ Certifique-se de ter instalado
    npm run dev
    ```
 6. Abra seu navegador e navegue até http://localhost:3000 para ver o site em ação.
-
-## Assets
-Baixe todos os recursos necessários para este projeto [aqui](https://#).
+---
