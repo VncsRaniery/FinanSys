@@ -35,7 +35,7 @@ export const Chart = ({ data = [] }: Props) => {
   };
 
   return (
-    <Card className="border-none shadow-md dark:shadow-xl dark:shadow-gray-900">
+    <Card className="shadow-md dark:shadow-xl dark:shadow-gray-900">
       <CardHeader className="flex space-y-2 lg:space-y-0 lg:flex-row lg:items-center justify-between">
         <CardTitle className="text-xl line-clamp-1">Transferências</CardTitle>
         <Select defaultValue={chartType} onValueChange={onTypeChange}>

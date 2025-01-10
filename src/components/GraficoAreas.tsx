@@ -34,7 +34,7 @@ export function GraficoAreas(props: Props) {
   const { data } = props;
 
   return (
-    <Card>
+    <Card className="border-none">
       <CardHeader>
         <CardTitle>Gráfico em Área</CardTitle>
         <CardDescription>Data</CardDescription>

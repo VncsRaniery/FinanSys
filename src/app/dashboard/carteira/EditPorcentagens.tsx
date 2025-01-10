@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetHeader,
@@ -11,10 +10,10 @@ import {
 import { Settings } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { useState } from "react";
-import { FormPorcentagem } from "./PercentualForm"; // Importar o FormPorcentagem
+import { FormPorcentagem } from "./PercentualForm";
 
 interface SheetDemoProps {
-  onPercentuaisChange: (percentuais: any) => void; // Adapte o tipo conforme necessário
+  onPercentuaisChange: (percentuais: any) => void;
 }
 
 export function SheetDemo({ onPercentuaisChange }: SheetDemoProps) {
@@ -30,13 +29,12 @@ export function SheetDemo({ onPercentuaisChange }: SheetDemoProps) {
   const handleFormSubmit = (data: any) => {
     setPercentuais(data);
     onPercentuaisChange(data);
-    toast.success("Percentuais atualizados com sucesso!"); // Mensagem de sucesso
+    toast.success("Percentuais atualizados com sucesso!");
   };
 
   return (
     <>
       <Toaster />
-
       <Sheet>
         <SheetTrigger asChild>
           <Button variant="outline" className="p-2">

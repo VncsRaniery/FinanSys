@@ -1,7 +1,7 @@
+import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
-import { z } from "zod"; // Certifique-se de ter o Zod instalado
 import { toast } from "sonner";
 import { SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -24,15 +24,12 @@ interface FormPorcentagemProps {
   onSubmit: (data: PercentuaisForm) => void;
 }
 
-export function FormPorcentagem({
-  percentuais,
-  onSubmit,
-}: FormPorcentagemProps) {
-  const { register, handleSubmit, setValue, watch } = useForm<PercentuaisForm>();
+export function FormPorcentagem({ onSubmit }: FormPorcentagemProps) {
+  const { register, handleSubmit, setValue, watch } =
+    useForm<PercentuaisForm>();
 
-  const valores = watch(); // Obter valores em tempo real
+  const valores = watch();
 
-  // Calcular soma total
   const calcularSomaTotal = (valores: PercentuaisForm) => {
     return (
       (valores.custosFixos || 0) +
@@ -44,15 +41,13 @@ export function FormPorcentagem({
     );
   };
 
-  // Monitorar a soma e exibir mensagem de erro
   useEffect(() => {
     const soma = calcularSomaTotal(valores);
     if (soma > 100) {
-      toast.error("A soma dos percentuais não pode ultrapassar 100%"); // Exibe a notificação de erro
+      toast.error("A soma dos percentuais não pode ultrapassar 100%");
     }
   }, [valores]);
 
-  // Função de envio do formulário
   const handleFormSubmit = (data: PercentuaisForm) => {
     const soma = calcularSomaTotal(data);
     if (soma <= 100) {
@@ -60,9 +55,8 @@ export function FormPorcentagem({
     }
   };
 
-  // Resetar os valores para os iniciais
   const resetValues = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation(); // Impede o fechamento do sheet
+    event.stopPropagation();
     setValue("custosFixos", undefined);
     setValue("conforto", undefined);
     setValue("metas", undefined);
@@ -71,9 +65,8 @@ export function FormPorcentagem({
     setValue("conhecimento", undefined);
   };
 
-  // Preencher com valores recomendados
   const setRecommendedValues = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation(); // Impede o fechamento do sheet
+    event.stopPropagation();
     setValue("custosFixos", 35);
     setValue("conforto", 15);
     setValue("metas", 10);

@@ -33,7 +33,7 @@ type Props = {
 export function GraficoLinhas(props: Props) {
   const { data } = props;
   return (
-    <Card>
+    <Card className="border-none">
       <CardHeader>
         <CardTitle>Gráfico em linhas</CardTitle>
         <CardDescription>Data</CardDescription>
