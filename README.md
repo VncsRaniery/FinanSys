@@ -2,7 +2,7 @@
   FinanSys - Gerenciamento Financeiro
 </h1>
 
-<img width="1280" alt="FinanSys Thumbnail" src="/public/assets/FinanSys.png">
+<img width="1280" alt="FinanSys Thumbnail" src="/public/assets/Banner.png">
 
 
 ## Introdução
